@@ -1,0 +1,28 @@
+Case 1:
+ML says MOR
+Rule engine says MOR
+→ Final recommendation: MOR
+
+Case 2:
+ML says MOR
+Rule engine finds no rule
+→ Final recommendation: MOR, review depends on confidence
+
+Case 3:
+ML says Non-MOR
+Rule engine says MOR
+→ Mandatory Review
+
+Case 4:
+ML says Non-MOR
+Rule engine finds no rule
+Confidence is high
+→ Final recommendation: Non-MOR
+
+Case 5:
+ML confidence < 0.70
+→ Review Required
+
+Case 6:
+ML says Non-MOR but confidence < 0.80
+→ Review Recommended
