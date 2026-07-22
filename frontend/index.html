@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Makes the page responsive on all screen sizes -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MOR Classification Model Workflow</title>
+
+  <!-- External CSS file -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <header class="hero-section">
+    <nav class="navbar">
+      <div class="logo">
+        MOR<span>AI</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#intent">Intent</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#developer-view">Developer View</a>
+        <a href="#testing">Testing</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="tagline">Flight Safety ML Development Workflow</p>
+
+      <h1>
+        Predictive MOR Classification Model
+      </h1>
+
+      <p class="hero-description">
+        A developer-focused visual representation of how safety reports,
+        MOR rule conditions, preprocessing logic, model training, testing,
+        and human review interact inside the proposed machine learning system.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#workflow" class="primary-btn">View Model Flow</a>
+        <a href="#developer-view" class="secondary-btn">Developer Perspective</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= PROJECT INTENT SECTION ================= -->
+  <section id="intent" class="section">
+    <div class="section-heading">
+      <p class="section-label">Project Intent</p>
+      <h2>What is being developed?</h2>
+    </div>
+
+    <div class="intent-grid">
+
+      <div class="info-card">
+        <h3>Objective</h3>
+        <p>
+          Build a predictive machine learning model that reads safety reports
+          written in normal English and predicts whether the report is a
+          Mandatory Occurrence Report, also known as MOR.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Input Sources</h3>
+        <p>
+          The model uses two main sources: historical safety reports stored in
+          Excel files and a structured MOR rules Excel created from the
+          regulatory rulebook.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Expected Output</h3>
+        <p>
+          The system should return MOR or Non-MOR classification as of now. In future, we may expand it to display category,
+          sub-category, confidence score, matched rule, and review requirement.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= HIGH LEVEL SYSTEM ARCHITECTURE ================= -->
+  <section class="section architecture-section">
+    <div class="section-heading">
+      <p class="section-label">System Architecture</p>
+      <h2>High-Level Information Flow</h2>
+    </div>
+
+    <div class="architecture-wrapper">
+
+      <div class="architecture-node input-node">
+        <span class="node-number">01</span>
+        <h3>Raw Inputs</h3>
+        <p>Safety reports Excel + MOR rulebook PDF</p>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <div class="architecture-node process-node">
+        <span class="node-number">02</span>
+        <h3>Preprocessing</h3>
+        <p>Cleaning, standardization, rule extraction, label preparation</p>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <div class="architecture-node model-node">
+        <span class="node-number">03</span>
+        <h3>ML Model</h3>
+        <p>Train MOR classifier and category classifier</p>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <div class="architecture-node output-node">
+        <span class="node-number">04</span>
+        <h3>Prediction Output</h3>
+        <p>MOR status, category, confidence, review flag</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= DETAILED MODEL WORKFLOW ================= -->
+  <section id="workflow" class="section workflow-section">
+    <div class="section-heading">
+      <p class="section-label">Detailed Workflow</p>
+      <h2>Developer-Level Model Pipeline</h2>
+      <p class="section-subtitle">
+        Click on each step to view its purpose in the developer panel.
+      </p>
+    </div>
+
+    <div class="workflow-layout">
+
+      <!-- LEFT SIDE: WORKFLOW PIPELINE -->
+      <div class="pipeline">
+
+        <div class="pipeline-step active" data-step="rulebook">
+          <div class="step-icon">📘</div>
+          <div>
+            <h3>Rulebook Conversion</h3>
+            <p>Convert MOR PDF rules into structured Excel</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="data-cleaning">
+          <div class="step-icon">🧹</div>
+          <div>
+            <h3>Data Cleaning</h3>
+            <p>Clean report text, labels, abbreviations, duplicates</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="split">
+          <div class="step-icon">✂️</div>
+          <div>
+            <h3>Train/Test Split</h3>
+            <p>Separate historical reports into training and testing sets</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="training">
+          <div class="step-icon">🧠</div>
+          <div>
+            <h3>Model Training</h3>
+            <p>Train text classification models for MOR prediction</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="testing">
+          <div class="step-icon">📊</div>
+          <div>
+            <h3>Model Testing</h3>
+            <p>Evaluate accuracy, recall, precision, F1-score</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="prediction">
+          <div class="step-icon">🚦</div>
+          <div>
+            <h3>New Report Prediction</h3>
+            <p>Predict MOR, category, confidence, and review requirement</p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="pipeline-step" data-step="feedback">
+          <div class="step-icon">🔁</div>
+          <div>
+            <h3>Human Review & Feedback</h3>
+            <p>Safety team validates low-confidence predictions</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE: DYNAMIC DEVELOPER PANEL -->
+      <div id="developer-panel" class="developer-panel">
+        <p class="panel-label">Current Step</p>
+        <h3 id="panel-title">Rulebook Conversion</h3>
+        <p id="panel-description">
+          The MOR rulebook PDF is converted into a structured Excel file where
+          each MOR condition is stored as a separate rule.
+        </p>
+
+        <div class="panel-details">
+          <h4>Developer Tasks</h4>
+          <ul id="panel-task-list">
+            <li>Extract MOR conditions from PDF</li>
+            <li>Create rule_id for each condition</li>
+            <li>Store domain, category, sub-category and keywords</li>
+            <li>Use this Excel as rule-based reference</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= PREPROCESSING BREAKDOWN ================= -->
+  <section class="section">
+    <div class="section-heading">
+      <p class="section-label">Preprocessing</p>
+      <h2>What happens before model training?</h2>
+    </div>
+
+    <div class="preprocessing-grid">
+
+      <div class="process-card">
+        <span>01</span>
+        <h3>Rulebook to Excel</h3>
+        <p>
+          The PDF rulebook is converted into structured rows containing rule ID,
+          domain, category, sub-category, MOR condition, and keywords.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>02</span>
+        <h3>Report Text Cleaning</h3>
+        <p>
+          Raw reports are cleaned by removing extra spaces, special characters,
+          email signatures, duplicate entries, and unnecessary identifiers.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>03</span>
+        <h3>Aviation Term Normalization</h3>
+        <p>
+          Abbreviations such as ACFT, RWY, TWY, APU, GPU, FOD, ATC are
+          standardized for better model understanding.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>04</span>
+        <h3>Label Standardization</h3>
+        <p>
+          Labels such as Bird Hit, Birdstrike, Wildlife Strike are mapped into
+          one standard class to avoid confusing the model.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>05</span>
+        <h3>Dataset Splitting</h3>
+        <p>
+          Cleaned reports are divided into training and testing sets, usually
+          using a 70:30 or 80:20 ratio with stratified splitting.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>06</span>
+        <h3>Feature Preparation</h3>
+        <p>
+          Report text is converted into numerical form using TF-IDF or sentence
+          embeddings before being passed into the ML model.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= DEVELOPER PERSPECTIVE SECTION ================= -->
+  <section id="developer-view" class="section developer-view-section">
+    <div class="section-heading">
+      <p class="section-label">Developer Perspective</p>
+      <h2>Current Working Logic</h2>
+    </div>
+
+    <div class="developer-flow">
+
+      <div class="code-card">
+        <h3>1. Data Layer</h3>
+        <pre>
+Excel Reports
+MOR Rules Excel
+Cleaned Dataset
+Training Dataset
+Testing Dataset
+        </pre>
+      </div>
+
+      <div class="code-card">
+        <h3>2. Processing Layer</h3>
+        <pre>
+clean_text()
+normalize_terms()
+standardize_labels()
+match_rules()
+split_dataset()
+        </pre>
+      </div>
+
+      <div class="code-card">
+        <h3>3. Model Layer</h3>
+        <pre>
+TF-IDF Vectorizer
+Logistic Regression
+MOR Classifier
+Category Classifier
+Confidence Score
+        </pre>
+      </div>
+
+      <div class="code-card">
+        <h3>4. Review Layer</h3>
+        <pre>
+if confidence < threshold:
+    send_to_human_review()
+else:
+    return_prediction()
+        </pre>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= MODEL TESTING SECTION ================= -->
+  <section id="testing" class="section testing-section">
+    <div class="section-heading">
+      <p class="section-label">Testing & Evaluation</p>
+      <h2>How the model will be tested</h2>
+    </div>
+
+    <div class="metrics-grid">
+
+      <div class="metric-card">
+        <h3>Accuracy</h3>
+        <p>Measures the percentage of total correct predictions.</p>
+      </div>
+
+      <div class="metric-card important">
+        <h3>Recall</h3>
+        <p>
+          Important for MOR detection because missing an actual MOR can be
+          safety-critical.
+        </p>
+      </div>
+
+      <div class="metric-card">
+        <h3>Precision</h3>
+        <p>Measures how many predicted MOR cases were actually MOR.</p>
+      </div>
+
+      <div class="metric-card">
+        <h3>F1-Score</h3>
+        <p>Balances precision and recall into a single evaluation score.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FINAL MODEL OUTPUT SECTION ================= -->
+  <section class="section output-section">
+    <div class="section-heading">
+      <p class="section-label">Expected Developer Output</p>
+      <h2>Prediction Response Structure</h2>
+    </div>
+
+    <div class="output-box">
+      <pre>
+{
+  "input_report": "Smoke observed in cabin during taxi.",
+  "mor_prediction": "Yes",
+  "mor_confidence": 0.91,
+  "predicted_category": "Aircraft Flight Operations",
+  "predicted_subcategory": "Emergencies - Smoke/Fumes",
+  "matched_rule_id": "Rxxx",
+  "review_required": "No",
+  "model_version": "v1.0"
+}
+      </pre>
+    </div>
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p>
+      MOR Classification Model | Developer Workflow Visualization
+    </p>
+  </footer>
+
+  <!-- External JavaScript file -->
+  <script src="js/script.js"></script>
+</body>
+</html>
